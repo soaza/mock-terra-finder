@@ -21,8 +21,8 @@ export const SearchBar = () => {
         width={20}
         bordered={false}
         allowClear
-        placeholder="Search Block/ Tx / Account"
-        suffix={<SearchOutlined />}
+        placeholder="Search Block/ Tx / Account e.g 11222,531223"
+        suffix={<SearchOutlined onClick={handleNavigate} />}
       />
     </>
   );
