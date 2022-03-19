@@ -1,17 +1,25 @@
-import { Input } from "antd";
 import "./App.css";
 
-const { Search } = Input;
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { SearchPage } from "./Pages/SearchPage";
+import { ViewPage } from "./Pages/ViewPage";
 
-export const App = () => {
+const ROUTES = [
+  { path: "/", component: <SearchPage /> },
+  { path: "/view", component: <ViewPage /> },
+];
+
+const App = () => {
   return (
-    <div>
-      <Search
-        placeholder="input search text"
-        allowClear
-        style={{ width: 200 }}
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {ROUTES.map((route, index) => {
+          return (
+            <Route key={index} path={route.path} element={route.component} />
+          );
+        })}
+      </Routes>
+    </BrowserRouter>
   );
 };
 
