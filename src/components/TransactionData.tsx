@@ -43,6 +43,7 @@ export const TransactionData: React.FC<IProps> = (props) => {
         style={{ marginTop: 20 }}
         dataSource={blockData.transactions}
         columns={columns}
+        pagination={false}
       />
     </>
   );

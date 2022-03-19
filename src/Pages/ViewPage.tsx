@@ -4,9 +4,9 @@
 
  */
 
-import { Col, Descriptions, Row } from "antd";
+import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { BlockData } from "../components/BlockData";
 import { SearchBar } from "../components/SearchBar";
 import { TransactionData } from "../components/TransactionData";
@@ -19,6 +19,10 @@ export const ViewPage = () => {
   const [blockData, setBlockData] = useState<IBlock>();
 
   useEffect(() => {
+    setBlockId(searchParams.get("blockId"));
+  }, [searchParams]);
+
+  useEffect(() => {
     setBlockData(blocks.find((block) => String(block.blockId) === blockId));
   }, [blockId]);
 
@@ -29,7 +33,24 @@ export const ViewPage = () => {
           <SearchBar />
         </Row>
 
-        {!blockData && <div>No block found.</div>}
+        <div style={{ marginBottom: 20 }}>
+          <Link to={"/"}>Back to Search</Link>
+        </div>
+
+        {!blockData && (
+          <div style={{ color: "gray" }}>
+            No block found.
+            <div>
+              Try blocks{" "}
+              {blocks.map((block, index) => {
+                if (index == 0) {
+                  return `#${block.blockId}`;
+                }
+                return `,#${block.blockId}`;
+              })}
+            </div>
+          </div>
+        )}
 
         {blockData && (
           <>
