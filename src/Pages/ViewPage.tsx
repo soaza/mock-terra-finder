@@ -29,10 +29,13 @@ export const ViewPage = () => {
           <SearchBar />
         </Row>
 
+        {!blockData && <div>No block found.</div>}
+
         {blockData && (
           <>
             <BlockData blockData={blockData} />
-            <TransactionData />
+
+            {<TransactionData blockData={blockData} />}
           </>
         )}
       </Col>

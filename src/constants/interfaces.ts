@@ -10,9 +10,12 @@ export interface ITransaction {
   type: TTransactionType;
   fee: number;
   feeType: string;
+  timestamp: string;
 }
 
 export enum TTransactionType {
   MsgSend,
   MsgMultiSend,
+  MsgExchangeRateVote,
+  MsgAggregateExchangeRateVote,
 }
